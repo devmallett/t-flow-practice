@@ -42,7 +42,7 @@ model.fit(train_images, train_labels, epochs=9)
 # Variable Preduiction
 
 prediction = model.predict([test_images])
-print( class_names[np.argmax(prediction[0]) ])
+print( class_names[np.argmax(prediction[0])])
 
 for i in range(5):
     plt.grid(False)
