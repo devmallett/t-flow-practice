@@ -12,15 +12,30 @@ data = keras.datasets.imdb
 # print(train_data[0])
 
 # print(data[0])
-word_index = keras.datasets.imdb.get_word_index() #what are tuples  
-
-
-# What is going on right here???
-# word_index = {k:(v+3) for k, v in word_index.items()}
+word_index = data.get_word_index() #tuples that has key and mappings  
 # print(word_index)
-# word_index['<PAD>'] = 0
-# word_index['<START>'] = 1
-# word_index['<UNK>'] = 2
-# word_index['<UNUSED>'] = 3
+
+# python nlps.py
+
+# Word Mapping to - what does this do though???
+# Finding a way to diplay it so we can look at it
+# Breaking up the tuple into key and avlue 
+ #PRIOR TO THIS LINE BELOW DATA STILL RETURNS SAME DATA AS LINE 15 
+ #THERE ARE SUPPOSED TO BE THREE KEYS FOR SPECIAL INDEXING 
+
+word_index = {k:(v+3) for k, v in word_index.items()} 
+print(word_index)
+
+#aLL OF THE WORDS IN TRAINING AND TESTING DATA SET HAVE KEYS AND VLAUES ASSOCIATED WITH THEM 
+#CAN ASSIGN YOUR OWN VALUES THAT DEAL WITH PAD, START, UNK, UNUSED 
+
+word_index['<PAD>'] = 0 #MAKING EACH MOVIE REVIEW TO BE THE SAME LENGTH 
+word_index['<START>'] = 1
+word_index['<UNK>'] = 2 #STANDS FOR UNKNOWN
+word_index['<UNUSED>'] = 3
 
 # for i in range(5):
+
+# reverse_word_index = dict([(value, key) for (key, value) in word_index.item()])
+
+
