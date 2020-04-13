@@ -27,8 +27,10 @@ import numpy as np
 
 
 # prediction = model.predict([one_hot_labels])
-vals = np.random.random((1000, 100))
-print(vals[77])
+# vals = np.random.random((1000, 100))
+vals = np.random.randint(2, size=10)
+print(vals)
+
 
 # python kera-sake.py
 
