@@ -28,7 +28,7 @@ import numpy as np
 
 # prediction = model.predict([one_hot_labels])
 # vals = np.random.random((1000, 100))
-vals = np.random.randint(2, size=10)
+vals = np.random.randint(3, 8, size=10)
 print(vals)
 
 
