@@ -46,29 +46,38 @@ word_index = data.get_word_index() #is not an array
 
 
 # 3 keys that will be special characters for word mapping
-# word_index = {k:(v+3) for k, v in word_index.items()}
-# word_index["<PAD>"] = 0
-# word_index["<START>"] = 1
-# word_index["<UNK>"] = 2
-# word_index["<UNUSED>"] = 3
+word_index = {k:(v+3) for k, v in word_index.items()}
+word_index["<PAD>"] = 0 #makes each review the same length - adds pad to make the length 200
+word_index["<START>"] = 1 
+word_index["<UNK>"] = 2
+word_index["<UNUSED>"] = 3
 
 
-# print(word_index())
+reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
+
+# decoding testing/ trainig data
+def decode_review(text):
+    return " ".join([reverse_word_index.get(i, "?") for i in text])
+
+print("This is 0",len(decode_review((test_data[0]))))
+print("This is one",len(decode_review((test_data[1]))))
+
+# print(word_index)
 
 # So if you want to find a random number 
-yummy = random.choice(list(word_index.keys()))
+# yummy = random.choice(list(word_index.keys()))
 
-print(yummy)
+# print(yummy)
 
 
 # GET VALUES THAT ARE NOT VALID, CAN STORE THEM INTO THE DICTIONARY 
-reverse_word_index = dict([(value, key) for (key,value) in word_index.items()])
+# reverse_word_index = dict([(value, key) for (key,value) in word_index.items()])
 
 
 
 
 # print(word_index)
-checker = len(reverse_word_index) #88,585 items in this tuple
+# checker = len(reverse_word_index) #88,585 items in this tuple
 # print(checker)
 
 # def decode_reviewed(text):
