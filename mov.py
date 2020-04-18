@@ -55,12 +55,86 @@ word_index["<UNUSED>"] = 3
 
 reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
 
-# decoding testing/ trainig data
+train_data = keras.preprocessing.sequence.pad_sequences(train_data, value=word_index["<PAD>"], padding="post", maxlen=250)
+test_data = keras.preprocessing.sequence.pad_sequences(test_data, value=word_index["<PAD>"], padding="post", maxlen=250)
+
+
+
+# print("This is 0",len((test_data[0])))
+# print("This is one",len((test_data[1])))
+
+# Preprocessing data  decoding testing/ trainig data
 def decode_review(text):
     return " ".join([reverse_word_index.get(i, "?") for i in text])
 
 print("This is 0",len(decode_review((test_data[0]))))
 print("This is one",len(decode_review((test_data[1]))))
+
+#Defining Model 
+'''
+
+High Level Understanding 
+CPU doenst have a good understanding of the differences between the words
+
+Embedding Layer
+    0     1     2       3
+    Have  a     great   day
+
+    0     1     4       3       
+    Have  a     good    day 
+
+    [0, 1, 2, 3] - > integer encoded list 
+
+    [0, 1, 4, 3] - > integer encoded list 
+
+    -All we can tell is 2 is differnt from 4, we know that they have a similiar context 
+    -Want to have words that are similiar in context even though words are different 
+    -Embedding layer groupd words in a similiar way so they know 
+    -Generates word vectors to past to future layers, any dimensional space 
+
+
+
+
+    We know these are different 
+
+     
+    -
+
+'''
+
+model = keras.Sequential()
+# Embedding Layer 
+model.add(keras.layers.Embedding(10000, 16, embeddings_initializer='uniform', embeddings_regularizer=None, activity_regularizer=None, embeddings_constraint=None, mask_zero=False, input_length=None))
+#Global Average Pooling 1D - takes what ever dimension our data is in and puts it in a lower dimension 
+model.add(keras.layers.GlobalAveragePooling1D())
+model.add(keras.layers.Dense(16, activation="relu"))
+model.add(keras.layers.Dense(1, activation="sigmoid")) #squish everything, what ever our value is between 0 and one 
+
+model.summary()
+
+model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"]) #loss will calculate difference
+
+
+#Validation Data - can check how well the model is performing based on the qtweaks we make for new data 
+
+x_val = train_data[:10000] #size doesnt matter
+x_train = train_data[10000:]
+
+y_val = train_labels[:10000] #size doesnt matter
+y_train = train_labels[10000:]
+
+
+fit_model = model.fit(x_train, y_train, epochs=40, batch_size=512,validation_data=(x_val, y_val), verbose=1)
+#Hyper tuning, changing individual parameters / fine tuning 
+
+results = model.evaluate(test_data, test_labels)
+
+print(results)
+
+
+
+
+
 
 # print(word_index)
 
