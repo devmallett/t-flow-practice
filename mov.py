@@ -131,6 +131,12 @@ results = model.evaluate(test_data, test_labels)
 
 print(results)
 
+#Saves model in bianry data 
+#
+model.save("model.h5")
+
+model = keras.models.load_model("model.h5")
+
 
 
 
