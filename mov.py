@@ -108,7 +108,7 @@ model.add(keras.layers.Embedding(10000, 16, embeddings_initializer='uniform', em
 #Global Average Pooling 1D - takes what ever dimension our data is in and puts it in a lower dimension 
 model.add(keras.layers.GlobalAveragePooling1D())
 model.add(keras.layers.Dense(16, activation="relu"))
-model.add(keras.layers.Dense(1, activation="sigmoid")) #squish everything, what ever our value is between 0 and one 
+model.add(keras.layers.Dense(1, activation="relu")) #squish everything, what ever our value is between 0 and one 
 
 model.summary()
 
