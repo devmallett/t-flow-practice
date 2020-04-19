@@ -68,7 +68,7 @@ def decode_review(text):
     return " ".join([reverse_word_index.get(i, "?") for i in text])
 
 print("This is 0",len(decode_review((test_data[0]))))
-print("This is one",len(decode_review((test_data[1]))))
+print("This is one",len(decode_review((test_data[3]))))
 
 #Defining Model 
 '''
