@@ -15,3 +15,11 @@ zip_path = tf.keras.utils.get_file(
     extract=True)
 
 csv_path, _ = os.path.splitext(zip_path)
+
+df = pd.read_csv(csv_path)
+
+df.head()
+
+print(df)
+
+# python ts-prac.py
