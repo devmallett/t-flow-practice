@@ -20,6 +20,36 @@ df = pd.read_csv(csv_path)
 
 df.head()
 
-print(df)
+# print(df)
+
+def univariate_data(dataset, start_index, end_index, history_size, target_size):
+    data = []
+    labeles = []
+
+    start_index = start_index + history_size
+
+if end_index is None:
+    end_index= len(dataset) - target_size
+
+for i in range(start_index, end_index):
+    indicies = range(i-history_size, i)
+    data.append(np.reshape(dataset[indicies], (history_size, 1)))
+    labels.append(dataset[i+target_size])
+    return np.array(Data), np.array(labels)
+
+TRAIN_SPLIT = 300000
+tf.random.set_seed(13)
+
+
+# univariate
+uni_data = df['T (deg C)']
+uni_data.index = df[' Date Time ']
+uni_data.head()
+
+print(uni_data)
+
+
+
+
 
 # python ts-prac.py
