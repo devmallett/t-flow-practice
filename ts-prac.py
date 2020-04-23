@@ -8,6 +8,7 @@ import pandas as pd
 
 mpl.rcParams['figure.figsize'] = (8,6)
 mpl.rcParams['axes.grid'] = False
+mpl.rcParams['facecolor'] = 'darkolivegreen'
 
 zip_path = tf.keras.utils.get_file(
     origin='https://storage.googleapis.com/tensorflow/tf-keras-datasets/jena_climate_2009_2016.csv.zip',
